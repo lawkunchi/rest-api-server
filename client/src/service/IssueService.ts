@@ -3,7 +3,7 @@ import APIService from "./APIService";
 class IssueService extends APIService {
   constructor() {
     super();
-    this.setPath("/issues"); 
+    this.setPath("/issues/"); 
   }
 
   async getUserData(userId: string) {

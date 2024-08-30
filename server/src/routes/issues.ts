@@ -1,11 +1,15 @@
 import { Router } from 'express';
+import { IssueService } from '../services/IssueService';
 import { IssuesController } from '../controllers/IssuesController';
 
-const router = Router();
+const issueService = new IssueService();
+const issuesController = new IssuesController(issueService);
 
-router.post('/', IssuesController.createIssue);
-router.get('/:id', IssuesController.getIssue);
-router.put('/:id', IssuesController.updateIssue);
-router.delete('/:id', IssuesController.deleteIssue);
+const router = Router();
+router.get('/', (req, res) => issuesController.readAll(req, res));
+router.post('/', (req, res) => issuesController.create(req, res));
+router.get('/:id', (req, res) => issuesController.read(req, res));
+router.put('/:id', (req, res) => issuesController.update(req, res));
+router.delete('/:id', (req, res) => issuesController.delete(req, res));
 
 export default router;

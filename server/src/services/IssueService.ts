@@ -17,6 +17,10 @@ export class IssueService {
     return this.issues.find((issue) => issue.id === id);
   }
 
+  public readAll(): Issue[]{
+    return this.issues;
+  }
+
   public update(id: string, updatedIssue: Partial<Issue>): Issue | undefined {
     const issueIndex = this.issues.findIndex((issue) => issue.id === id);
     if (issueIndex === -1) return undefined;

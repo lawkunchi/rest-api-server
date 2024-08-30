@@ -24,6 +24,15 @@ export class IssuesController extends BaseController {
     }
   }
 
+  readAll(req: IReq, res: IRes): void {
+    const issues = this.issueService.readAll();
+    if (issues) {
+      res.status(200).send(issues);
+    } else {
+      res.status(404).send({ message: "Issues not found" });
+    }
+  }
+
   update(req: IReq, res: IRes): void {
     const updatedIssue = this.issueService.update(req.params.id, req.body);
     if (updatedIssue) {

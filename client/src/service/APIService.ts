@@ -23,44 +23,59 @@ abstract class APIService {
     this.path = newPath;
   }
 
-  protected async get<T>(config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.axiosInstance.get(
-      `${this.path}`,
-      config
-    );
-    return response.data;
+  private handleError(error: any): never {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error occurred:", error.message);
+      throw new Error(`Axios error: ${error.message}`);
+    } else {
+      console.error("An unexpected error occurred:", error);
+      throw new Error("An unexpected error occurred");
+    }
   }
 
-  protected async post<T, R = T>(
-    data?: R,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
-    const response: AxiosResponse<T> = await this.axiosInstance.post(
-      `${this.path}`,
-      data,
-      config
-    );
-    return response.data;
+  public async get<T>(config?: AxiosRequestConfig): Promise<T> {
+    try {
+      const response: AxiosResponse<T> = await this.axiosInstance.get(`${this.path}`, config);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
-  protected async put<T, R = T>(
-    data?: R,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
-    const response: AxiosResponse<T> = await this.axiosInstance.put(
-      `${this.path}`,
-      data,
-      config
-    );
-    return response.data;
+  public async post<T, R = T>(data?: R, config?: AxiosRequestConfig): Promise<T> {
+    try {
+      const response: AxiosResponse<T> = await this.axiosInstance.post(`${this.path}`, data, config);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
-  protected async delete<T>(config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.axiosInstance.delete(
-      `${this.path}`,
-      config
-    );
-    return response.data;
+  public async put<T, R = T>(id:string, data?: R, config?: AxiosRequestConfig): Promise<T> {
+    try {
+      const response: AxiosResponse<T> = await this.axiosInstance.put(`${this.path}${id}`, data, config);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  public async delete<T>(id:string, config?: AxiosRequestConfig): Promise<T> {
+    try {
+      const response: AxiosResponse<T> = await this.axiosInstance.delete(`${this.path}${id}`, config);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  public async getAll<T>(config?: AxiosRequestConfig): Promise<T[]> {
+    try {
+      const response: AxiosResponse<T[]> = await this.axiosInstance.get(`${this.path}`, config);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 }
 
