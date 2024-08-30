@@ -4,7 +4,7 @@ Follow these steps to get the API server up and running:
 
 1. **Clone the Repository**:
    ```bash
-   git clone [https://github.com/lawkunchi/rest-api-server](https://github.com/lawkunchi/rest-api-server)
+   git clone https://github.com/lawkunchi/rest-api-server
    ```
 2. **Navigate to the Project Directory**:
    ```bash
