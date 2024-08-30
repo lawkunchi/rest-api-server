@@ -6,8 +6,12 @@ Follow these steps to get the API server up and running:
    ```bash
    git clone [this repo](https://github.com/lawkunchi/rest-api-server)
    ```
+2. **Navigate to the Project Directory**:
+   ```bash
+   cd server
+   ```
 
-2. **Install Dependencies**:
+3. **Install Dependencies**:
    ```bash
    npm install
    ```
