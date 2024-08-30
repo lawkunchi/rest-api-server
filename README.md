@@ -4,7 +4,7 @@ Follow these steps to get the API server up and running:
 
 1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
+   git clone [this repo](https://github.com/lawkunchi/rest-api-server)
    ```
 
 2. **Install Dependencies**:
