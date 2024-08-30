@@ -3,6 +3,10 @@ import { Issue } from "../models/Issue";
 export class IssueService {
   private issues: Issue[] = [];
 
+  constructor() {
+    this.populateSampleIssues();
+  }
+
   public create(issue: Issue): Issue {
     issue.id = this.generateId();
     this.issues.push(issue);
@@ -30,5 +34,21 @@ export class IssueService {
 
   private generateId(): string {
     return Math.random().toString(36).substring(2, 9);
+  }
+
+  public populateSampleIssues(): void {
+    const sampleIssues: Issue[] = [
+      {
+        id: this.generateId(),
+        title: "Sample Issue 1",
+        description: "This is a sample issue.",
+      },
+      {
+        id: this.generateId(),
+        title: "Sample Issue 2",
+        description: "This is another sample issue.",
+      },
+    ];
+    this.issues.push(...sampleIssues);
   }
 }
